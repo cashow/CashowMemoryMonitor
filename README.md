@@ -10,11 +10,11 @@ OutOfMemory 是 android 开发过程中无法避免的问题。当你把所有�
 
 ### 接入说明
 
-1. 引入library库；
-2. 在任何你想要做记录的地方（例如 Activity 和 Fragment 的 onCreate() 和 onDestroy() ）加上 `MemoryLog.addLog(this);` ；
+1. 引入library库
+2. 在任何你想要做记录的地方（例如 Activity 和 Fragment 的 onCreate() 和 onDestroy() ）加上 `MemoryLog.addLog(this);`
 3. 在 Application 的 onCreate() 里加上：
 
-```
+```java
 LogcatUtil.getInstance().setOutOfMemoryListener(new OutOfMemoryListener() {
             @Override
             public void onOutOfMemory() {
@@ -26,7 +26,7 @@ LogcatUtil.getInstance().setOutOfMemoryListener(new OutOfMemoryListener() {
 
 ### 效果
 
-在每次调用 `MemoryLog.addLog(this)` 的时候，都会在 MemoryLog 里记录一条当前的内存信息，格式如下：
+在每次调用 `MemoryLog.addLog(this)` 的时候，MemoryLog 都会记录一条当前的内存信息，格式如下：
 
 ```
 MainActivity [onCreate] 0.10M/96.00M
