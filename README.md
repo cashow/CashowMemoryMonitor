@@ -32,6 +32,8 @@ LogcatUtil.getInstance().setOutOfMemoryListener(new OutOfMemoryListener() {
 MainActivity [onCreate] 0.10M/96.00M
 ```
 
+其中，0.10M表示 app 当前使用的内存大小，96.00M 表示 app 最大可用的内存大小。
+
 当 app 发生 OutOfMemory 问题时，OutOfMemoryListener 会收到回调，你可以在 `onOutOfMemory()` 里把之前记录好的内存信息发给你们的服务器。内存信息可以通过 `MemoryLog.getLog()`获取到，格式如下：
 
 ```
