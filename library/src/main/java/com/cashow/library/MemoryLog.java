@@ -1,14 +1,12 @@
 package com.cashow.library;
 
-import android.util.Log;
-
 import java.util.Locale;
 
 public class MemoryLog {
 
     private static StringBuffer stringBuffer;
 
-    private static final String TAG = "MemoryMonitor";
+//    private static final String TAG = "MemoryMonitor";
 
     public static void init() {
         stringBuffer = new StringBuffer();
@@ -19,7 +17,7 @@ public class MemoryLog {
         String memoryLog = getMemoryLog(object, methodName);
         stringBuffer.append("\n");
         stringBuffer.append(memoryLog);
-        Log.d(TAG, "addLog : " + memoryLog);
+//        Log.d(TAG, "addLog : " + memoryLog);
     }
 
     private static String getMethodNames(StackTraceElement[] sElements){
