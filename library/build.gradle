@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -21,4 +22,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.3.1'
+}
+
+publish {
+    userOrg = 'cashow'
+    groupId = 'com.cashow'
+    artifactId = 'cashowmemorymonitor'
+    publishVersion = '1.0'
+    desc = 'Android library to record memory info'
+    website = 'https://github.com/cashow/CashowMemoryMonitor'
 }
