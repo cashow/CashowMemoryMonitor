@@ -11,6 +11,9 @@ OutOfMemory 是 android 开发过程中无法避免的问题。当你把所有�
 ### 接入说明
 
 1. 引入library库
+```
+compile 'com.cashow:cashowmemorymonitor:1.0'
+```
 2. 在任何你想要做记录的地方（例如 Activity 和 Fragment 的 onCreate() 和 onDestroy() ）加上 `MemoryLog.addLog(this);`
 3. 在 Application 的 onCreate() 里加上：
 
