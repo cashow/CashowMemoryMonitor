@@ -10,8 +10,10 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MemoryLog.setPrintLog(true);
         // record memory info
         MemoryLog.addLog(this);
+        test();
     }
 
     @Override
@@ -19,5 +21,9 @@ public class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         // record memory info
         MemoryLog.addLog(this);
+    }
+
+    private void test() {
+        MemoryLog.addLog("BaseActivity", "test");
     }
 }

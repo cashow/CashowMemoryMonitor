@@ -28,7 +28,7 @@ publish {
     userOrg = 'cashow'
     groupId = 'com.cashow'
     artifactId = 'cashowmemorymonitor'
-    publishVersion = '1.0'
+    publishVersion = '1.1'
     desc = 'Android library to record memory info'
     website = 'https://github.com/cashow/CashowMemoryMonitor'
 }

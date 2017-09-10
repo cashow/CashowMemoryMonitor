@@ -12,11 +12,10 @@ OutOfMemory 是 android 开发过程中无法避免的问题。当你把所有�
 
 1. 引入library库
 ```
-compile 'com.cashow:cashowmemorymonitor:1.0'
+compile 'com.cashow:cashowmemorymonitor:1.1'
 ```
-2. 在任何你想要做记录的地方（例如 Activity 和 Fragment 的 onCreate() 和 onDestroy() ）加上 `MemoryLog.addLog(this);`
+2. 在任何你想要做记录的地方（例如 Activity 和 Fragment 的 onCreate() 和 onDestroy() ）加上 `MemoryLog.addLog(this);`。如果你的类名或者方法名混淆过了，请调用`MemoryLog.addLog(className, methodName);`
 3. 在 Application 的 onCreate() 里加上：
-
 ```java
 LogcatUtil.getInstance().setOutOfMemoryListener(new OutOfMemoryListener() {
             @Override
@@ -26,25 +25,26 @@ LogcatUtil.getInstance().setOutOfMemoryListener(new OutOfMemoryListener() {
             }
         }).start();
 ```
-
+4. 调用`MemoryLog.setPrintLog(true);`可以打印log
 ### 效果
 
 在每次调用 `MemoryLog.addLog(this)` 的时候，MemoryLog 都会记录一条当前的内存信息，格式如下：
 
 ```
-MainActivity [onCreate] 0.10M/96.00M
+MainActivity [onCreate] (1.68M + 16.15M)/256.00M
 ```
 
-其中，0.10M表示 app 当前使用的内存大小，96.00M 表示 app 最大可用的内存大小。
+其中，1.68M表示 app 当前可用的内存大小，16.15M表示 app 目前占用的内存大小，256.00M 表示 app 最大可用的内存大小。
 
 当 app 发生 OutOfMemory 问题时，OutOfMemoryListener 会收到回调，你可以在 `onOutOfMemory()` 里把之前记录好的内存信息发给你们的服务器。内存信息可以通过 `MemoryLog.getLog()`获取到，格式如下：
 
 ```
-MainActivity [onCreate] 0.10M/96.00M
-SecondActivity [onCreate] 0.38M/96.00M
-ThirdActivity [onCreate] 0.23M/96.00M
-ThirdActivity [onDestroy] 0.13M/96.00M
-ThirdActivity [onCreate] 0.95M/96.00M
+MainActivity [onCreate] (1.68M + 16.15M)/256.00M
+SecondActivity [onCreate] (0.15M + 16.15M)/256.00M
+ThirdActivity [onCreate] (4.60M + 16.15M)/256.00M
+ThirdActivity [onDestroy] (4.48M + 16.15M)/256.00M
+SecondActivity [onDestroy] (4.48M + 16.15M)/256.00M
+MainActivity [onDestroy] (4.47M + 16.15M)/256.00M
 ```
 
 通过分析这些数据，可以帮你粗略地定位到哪里的内存开销较大，之后再针对那一块去做优化就行了。
